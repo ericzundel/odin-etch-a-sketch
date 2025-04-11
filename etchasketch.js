@@ -1,43 +1,41 @@
 console.log("Starting");
 
 let grid = [];
-let numRows = 16;
-let numCols = 16;
+let pixelsPerSide = 16;
 const bodyElem = document.querySelector('body');
 const containerElem = document.querySelector('.container');
-const rowInputElem = document.querySelector('.rows');
-const columnInputElem = document.querySelector('.columns');
+const pixelsInputElem = document.querySelector('.pixels');
 const resetButtonElem = document.querySelector('.reset');
 
-rowInputElem.value = numRows;
-columnInputElem.value = numCols;
+pixelsInputElem.value = pixelsPerSide;
 
 resetButtonElem.addEventListener('click', (e) => {
-    numRows = Math.min(rowInputElem.value, 100);
-    numCols = Math.min(columnInputElem.value, 100);
+    pixelsPerSide = Math.min(pixelsInputElem.value, 100);
     buildGrid();
-    rowInputElem.value = numRows;
-    columnInputElem.value = numCols;
+    pixelsInputElem.value = pixelsPerSide;
 });
 
 function buildGrid() {
-    // const width = window.innerWidth - bodyElem.style.paddingLeft - bodyElem.style.paddingRight;
+    const width = window.innerWidth - bodyElem.style.paddingLeft - bodyElem.style.paddingRight;
+    const rowHeight = width / pixelsPerSide;
 
     while (containerElem.firstChild) {
         containerElem.firstChild.remove()
     }
 
     // build the grid of divs
-    for (let row = 0; row < numRows; row++) {
+    for (let row = 0; row < pixelsPerSide; row++) {
         let rowElem = document.createElement("div");
         rowElem.className = 'row';
         let rowElemArray = [];
-        for (let col = 0; col < numCols; col++) {
+        for (let col = 0; col < pixelsPerSide; col++) {
             let cellElem = createCell(row, col);
             rowElemArray.push(cellElem);
             rowElem.appendChild(cellElem);
         }
-        // rowElem.style.flexBasis = String(100/numCols) + "%"
+        /*rowElem.style.flexBasis = String(cellWidth) + "px";*/
+        rowElem.style.height = String(rowHeight) + "px";
+        rowElem.style.flexBasis = String(rowHeight) + "px";
         containerElem.appendChild(rowElem);
         grid.push(rowElemArray);
     }
