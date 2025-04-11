@@ -1,18 +1,53 @@
-.container {
+body {
     display: flex;
     flex-direction: column;
+    align-items: center;
+    justify-items: center;
+    background-image: radial-gradient(circle, lightgrey, grey);
+    font-family: Roboto, sans-serif;
+}
+
+body h1 {
+    flex: 0;
+}
+
+.input-row {
+    flex: 0;
+    display: flex;
+    padding: 15px;
+    justify-content: stretch;
+    margin: 10px;
+}
+
+.container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-items: stretch;
 }
 
 .row {
     display: flex;
-    flex: 0;
-    flex-basis: 20px;
+    flex: 1 1 5px;
 }
 
 .cell {
-    flex: 0;
-    width: 20px;
-    height: 20px;
-    flex-basis: 20px;
+    flex: 1;
+    /*
+    flex-grow: 0;
+    flex-shrink: 0;
+    flex-basis: 10%;
+    */
+    /*width: 20px;*/
+    /*height: 20px;*/
     background-color: black;
+}
+
+.input-row .rows {
+    width: 100px;
+}
+
+.input-row .columns {
+    width: 100px
 }
