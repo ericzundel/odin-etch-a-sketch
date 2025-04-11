@@ -16,8 +16,10 @@ resetButtonElem.addEventListener('click', (e) => {
 });
 
 function buildGrid() {
-    const width = window.innerWidth - bodyElem.style.paddingLeft - bodyElem.style.paddingRight;
+    const offset = containerElem.getBoundingClientRect().y;
+    const width = window.innerHeight - offset - 10;
     const rowHeight = width / pixelsPerSide;
+    containerElem.style.width = String(rowHeight * pixelsPerSide) + "px"
 
     while (containerElem.firstChild) {
         containerElem.firstChild.remove()
@@ -33,7 +35,6 @@ function buildGrid() {
             rowElemArray.push(cellElem);
             rowElem.appendChild(cellElem);
         }
-        /*rowElem.style.flexBasis = String(cellWidth) + "px";*/
         rowElem.style.height = String(rowHeight) + "px";
         rowElem.style.flexBasis = String(rowHeight) + "px";
         containerElem.appendChild(rowElem);
@@ -46,9 +47,8 @@ function createCell(row, col) {
     cellElem.classList.add("cell")
     cellElem.classList.add(`cell-${row}-${col}`);
     cellElem.addEventListener('mouseover', (e) => {
-        cellElem.style.backgroundColor = "white";
+        cellElem.style.backgroundColor = "lightgrey";
     });
-    // cellElem.style.flexBasis = 100/numCols;
     return cellElem;
 }
 
